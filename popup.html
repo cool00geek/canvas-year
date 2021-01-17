@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="story.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css">
+    <link rel="stylesheet" href="story.css">
+</head>
+
+<body>
+    <div class="ext-title hero title has-text-centered is-link py-2">Canvas Year in Review</div>
+    <div id="confirm_form" class="has-text-centered" style="visibility: visible">
+        <input id="domain_input" class="input mb-4" type="text" placeholder="Canvas Domain (e.g. canvas.ucsc.edu)">
+        <br>
+        <button class="button has-text-centered is-link mb-6" id="start_btn">Generate Review</button>
+    </div>
+    <div id="results" style="display: none">
+        <div class="columns mx-2">
+            <div class="column">
+                <div class="box has-background-link has-text-white">
+                    <h1 class="title has-text-centered has-text-white">
+                        <span id="assigned"></span>
+                    </h1>
+                    <h2 class="subtitle has-text-centered has-text-white">Total Assignments Assigned</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns mx-2 mb-4">
+            <div class="column">
+                <div id="submitted_box" class="box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="submitted"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered">Total Assignments Submitted</h2>
+                </div>
+                <div id="near_d_box" class="box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="near_d"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered">Assignments &lt 30 Min. Before Deadline</h2>
+                </div>
+                <div id="avg_score_box" class=" box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="avg_score"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered ">Average Assignment Score</h2>
+                </div>
+            </div>
+            <div class="column ">
+                <div id="missing_box" class="box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="missing"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered">Missing Assignments</h2>
+                </div>
+                <div id="late_box" class="box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="late"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered ">Late Assignments</h2>
+                </div>
+                <div id="class_score_box" class="box">
+                    <h1 class="title is-4 has-text-centered">
+                        <span id="class_score"></span>
+                    </h1>
+                    <h2 class="subtitle is-6 has-text-centered ">Average Class Score</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
