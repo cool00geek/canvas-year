@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "description": "Generate statistics from your Canvas activity for the past year.",
     "short_name": "Canvas Year",
-    "permissions": ["storage"],
+    "permissions": ["storage", "tabs"],
     "content_scripts": [{
         "matches": ["https://*.instructure.com/*", "https://*.edu/*"],
         "css": ["story.css"],

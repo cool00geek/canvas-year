@@ -6,15 +6,17 @@ token = "";
 // Get all the classes you've taken
 // Return: Array of course objects: https://canvas.instructure.com/doc/api/courses.html#method.courses.index
 async function get_classes() {
-    console.log(token);
     const response = await fetch(domain + "/api/v1/courses?" + new URLSearchParams({
         per_page: 50,
         include: ['total_scores']
-    }), { headers: { Authorization: "Bearer" + token } })
+    }), { headers: { Authorization: "Bearer" + token } });
     const stripped_resp = (await response.text()).substring(9);
-    //console.log(stripped_resp);
+    if (response.status >= 400) {
+        return null;
+    }
+    //console.log(response.status);
     const json = await JSON.parse(stripped_resp);
-    console.log(json);
+    //console.log(json);
     return json;
 }
 
@@ -102,6 +104,9 @@ var class = {
 async function get_data() {
     var last_year = get_desired_year();
     var class_list = await get_classes();
+    if (class_list == null) {
+        return null;
+    }
     var classes = [];
     for (var i = 0; i < class_list.length; i++) {
         var curr_class = class_list[i];
@@ -160,6 +165,10 @@ async function parse_data() {
         avg_score: 0.0,
         avg_class_score: 0.0,
     };
+    if (class_data == null) {
+        parsed_data['assigned'] = -1;
+        return parsed_data;
+    }
     // Helper vars to calculate average unweighted percent
     var total_points_received = 0;
     var total_points_possible = 0;
@@ -239,7 +248,12 @@ function clean_domain() {
 }
 
 function set_data(data) {
-    document.getElementById("assigned").innerHTML = data['assigned'];
+    if (data['assigned'] == -1) {
+        document.getElementById("assigned").innerHTML = "An error occurred. Are you logged in?";
+        document.querySelector("#results > div:nth-child(1) > div > div > h2").innerHTML = "";
+    } else {
+        document.getElementById("assigned").innerHTML = data['assigned'];
+    }
 
     document.getElementById("submitted").innerHTML = data['submitted'];
     var submit_percent = data['submitted'] / data['assigned'] * 100;
@@ -253,9 +267,9 @@ function set_data(data) {
 
     document.getElementById("near_d").innerHTML = data['near_deadline'];
     var near_d_percent = data['near_deadline'] / data['assigned'] * 100;
-    if (near_d_percent < 10) {
+    if (data['assigned'] >= 0 && near_d_percent < 10) {
         document.getElementById("near_d_box").classList.add("has-background-success");
-    } else if (near_d_percent < 20) {
+    } else if (data['assigned'] >= 0 && near_d_percent < 20) {
         document.getElementById("near_d_box").classList.add("has-background-warning");
     } else {
         document.getElementById("near_d_box").classList.add("has-background-danger");
@@ -263,9 +277,9 @@ function set_data(data) {
 
     document.getElementById("missing").innerHTML = data['missing'];
     var missing_percent = data['missing'] / data['assigned'] * 100;
-    if (missing_percent < 5) {
+    if (data['assigned'] >= 0 && missing_percent < 5) {
         document.getElementById("missing_box").classList.add("has-background-success");
-    } else if (missing_percent < 10) {
+    } else if (data['assigned'] >= 0 && missing_percent < 10) {
         document.getElementById("missing_box").classList.add("has-background-warning");
     } else {
         document.getElementById("missing_box").classList.add("has-background-danger");
@@ -273,9 +287,9 @@ function set_data(data) {
 
     document.getElementById("late").innerHTML = data['late'];
     var late_percent = data['late'] / data['assigned'] * 100;
-    if (late_percent < 5) {
+    if (data['assigned'] >= 0 && late_percent < 5) {
         document.getElementById("late_box").classList.add("has-background-success");
-    } else if (late_percent < 10) {
+    } else if (data['assigned'] >= 0 && late_percent < 10) {
         document.getElementById("late_box").classList.add("has-background-warning");
     } else {
         document.getElementById("late_box").classList.add("has-background-danger");
@@ -313,10 +327,10 @@ async function update_popup() {
 
     var data = await parse_data();
     /*var data = {
-        submitted: 30,
-        near_deadline: 10,
-        late: 0,
-        missing: 5,
+        submitted: 40,
+        near_deadline: 1,
+        late: 5,
+        missing: 0,
         assigned: 42,
         avg_score: 89.42,
         avg_class_score: 74.65,
@@ -337,6 +351,16 @@ window.onload = function() {
             }
         });
     }
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        var tab = tabs[0];
+        var url = new URL(tab.url);
+        var curr_domain = url.hostname;
+        if (curr_domain.match(/.*\.edu|.*\.instructure.com/gi)) {
+            console.log("Matches!");
+            document.getElementById("domain_input").value = curr_domain;
+        }
+    })
+
     document.getElementById("start_btn").onclick = function(event) { update_popup() };
 };
 //parse_data();
