@@ -5,10 +5,14 @@
     "description": "Generate statistics from your Canvas activity for the past year.",
     "short_name": "Canvas Year",
     "permissions": ["storage"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "content_scripts": [{
         "matches": ["https://*.instructure.com/*", "https://*.edu/*"],
         "css": ["story.css"],
-        "js": ["story.js"]
+        "js": ["story.js", "icon.js"]
     }],
     "browser_action": {
         "default_title": "Canvas Year in Review",
