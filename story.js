@@ -329,6 +329,14 @@ async function update_popup() {
 }
 
 window.onload = function() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        chrome.browserAction.setIcon({
+            path: {
+                "32": "icons/icon32_light.png",
+                "16": "icons/icon16_light.png"
+            }
+        });
+    }
     document.getElementById("start_btn").onclick = function(event) { update_popup() };
 };
 //parse_data();
