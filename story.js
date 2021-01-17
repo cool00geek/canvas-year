@@ -346,6 +346,7 @@ window.onload = function() {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         chrome.browserAction.setIcon({
             path: {
+                "128": "icons/icon128_light.png",
                 "32": "icons/icon32_light.png",
                 "16": "icons/icon16_light.png"
             }
