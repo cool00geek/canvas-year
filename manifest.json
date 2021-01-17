@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Canvas Year in Review",
     "version": "1.0.0",
     "description": "Generate statistics from your Canvas activity for the past year.",
@@ -10,12 +10,13 @@
         "css": ["story.css"],
         "js": ["story.js"]
     }],
-    "browser_action": {
+    "action": {
         "default_title": "Canvas Year in Review",
         "default_popup": "popup.html",
         "default_icon": {
             "16": "icons/icon16.png",
-            "32": "icons/icon32.png"
+            "32": "icons/icon32.png",
+            "128": "icons/icon128.png"
         }
     }
 }
