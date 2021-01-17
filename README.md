@@ -37,3 +37,7 @@ Some useful features would include:
 - Custom time periods to get a snapshot of
 - The ability to include or exclude certain courses
 - Sharing your year in review as an image on social media
+
+## Icon Attribution
+
+Note: the clock icon that we used for this extension is from [Font Awesome](https://fontawesome.com/icons/clock?style=solid) who licenses this icon under the [Creative Commons license](https://fontawesome.com/license).
