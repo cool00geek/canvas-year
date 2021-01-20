@@ -3,12 +3,34 @@
 
 <head>
     <script src="story.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css">
+    <link rel="stylesheet" href="bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="story.css">
 </head>
 
 <body>
-    <div class="ext-title hero title has-text-centered is-link py-2">Canvas Year in Review</div>
+    <nav class="navbar is-link mb-4" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://github.com/cool00geek/canvas-year" target="_blank">
+                <span class="icon is-large ml-1 fa-3x">
+                    <i class="fa fa-github fa-fw"></i>
+
+                </span>
+            </a>
+        </div>
+        <div class="navbar-menu is-link">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <div class="navbar-item has-text-white is-size-3">
+                    Canvas Year in Review
+                </div>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" style="visibility:hidden">
+                    <i class="fa fa-github-square fa-fw fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
     <div id="confirm_form" class="has-text-centered" style="visibility: visible">
         <input id="domain_input" class="input mb-4" type="text" placeholder="Canvas Domain (e.g. canvas.ucsc.edu)">
         <br>

@@ -1,6 +1,22 @@
-.ext-title {
+.navbar {
     width: 770px;
+}
+
+.navbar,
+.navbar-menu,
+.navbar-end,
+.navbar-start,
+.navbar-item {
     border-radius: 0px 0px 12px 12px;
+    display: flex;
+}
+
+.navbar-menu {
+    box-shadow: none;
+    background-color: #3273dc;
+    padding: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .input {
