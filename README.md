@@ -2,6 +2,10 @@
 
 A browser extension designed to help you get an overview of your educational experience on the online learning system, Canvas.
 
+Winner of CruzHacks 2021's "Wildest Idea" award
+
+[Devpost](https://devpost.com/software/canvas-year-in-review)
+
 ## Inspiration
 
 Due to the recent COVID-19 pandemic, all of our classes have been forced online. Many of our classes are conducted through the online learning platform Canvas, which is a platform for universities to centralize their learning systems and resources for each course.
