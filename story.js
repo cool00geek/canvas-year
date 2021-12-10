@@ -10,11 +10,12 @@ async function get_classes() {
         per_page: 50,
         include: ['total_scores']
     }), { headers: { Authorization: "Bearer" + token } });
-    const stripped_resp = (await response.text()).substring(9);
+    const stripped_resp = (await response.text());
     if (response.status >= 400) {
         return null;
     }
     //console.log(response.status);
+    //console.log(stripped_resp)
     const json = await JSON.parse(stripped_resp);
     //console.log(json);
     return json;
@@ -46,7 +47,7 @@ var assignment = {
 // Return: Array of assignment object as defined above
 async function get_assignments(course_name, course_id) {
     const response = await fetch(domain + "/api/v1/courses/" + course_id + "/assignments?per_page=100", { headers: { Authorization: "Bearer" + token } })
-    const stripped_response = (await response.text()).substring(9);
+    const stripped_response = (await response.text());
     const assignment_arr = await JSON.parse(stripped_response);
     var assignments = [];
     for (var i = 0; i < assignment_arr.length; i++) {
@@ -79,7 +80,7 @@ async function get_assignments(course_name, course_id) {
 // Return: assignment object
 async function get_submissions(course_id, assignment_details) {
     const response = await fetch(domain + "/api/v1/courses/" + course_id + "/assignments/" + assignment_details['id'] + "/submissions/self", { headers: { Authorization: "Bearer" + token } })
-    const stripped_response = (await response.text()).substring(9);
+    const stripped_response = (await response.text())/*.substring(9)*/;
     const submission_arr = await JSON.parse(stripped_response);
 
     assignment_details['submitted_at'] = submission_arr['submitted_at'];
